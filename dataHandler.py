@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import os
 
 class server(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -21,10 +22,12 @@ class server(BaseHTTPRequestHandler):
                 self.end_headers()
 
 def main():
-    with open("keylog.txt", "w") as f:
-        pass
-    with open("pcaplog.txt", "w") as f:
-        pass
+    if not os.path.exists("keylog.txt"):
+        with open("keylog.txt", "w") as f:
+            pass
+    if not os.path.exists("pcaplog.txt"):
+        with open("pcaplog.txt", "w") as f:
+            pass
     print("Server intialising...")
     httpd = HTTPServer(("localhost", 5000), server)
     print("Server active")
