@@ -28,8 +28,8 @@ def sniff():
     packet_message = ""
     for packet in packets:
         timestamp = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-        timestamp_header = f"\n- - - - - - - - - - - - - - - - - - - - - - - - -\n- DATETIME --- {timestamp} --- DATETIME -\n- - - - - - - - - - - - - - - - - - - - - - - - -\n\n"
-        packet_message += timestamp_header + str(packet)
+        timestamp_header = f"\n{timestamp} --- DATETIME\n"
+        packet_message += timestamp_header + str(packet.ip.dst)
     rs = rq.post(server + "/pcap", packet_message.encode('utf-8'))
     print("End of packet message stream!")
 

@@ -15,7 +15,6 @@ class server(BaseHTTPRequestHandler):
                 self.end_headers()
             
             elif self.path == "/pcap":
-                print(file_data)
                 with open("pcaplog.txt", "a") as f:
                     f.write(file_data.decode('utf-8') + "\n")
                 self.send_response(200)
